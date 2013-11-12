@@ -1,0 +1,8 @@
+<h1>Products</h1>
+<p><%= link_to "My Profile", user_path(current_user)%> | <%= link_to "Create New Product", new_product_path(@new) %></p>
+
+
+<% @products.each do |p| %>
+	<p><li><%= p.name %> - $<%= p.formatted_price %></li></p>
+	<p><%= link_to "See More", product_path(p) %></p>
+<% end %>
