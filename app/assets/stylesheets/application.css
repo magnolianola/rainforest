@@ -11,11 +11,6 @@
  *= require_self
  *= require_tree .
  */
-h1 {text-align:center;}
-h2 {text-align:center;}
-h3 {text-align:center;}
-h4 {text-align:center;}
-p {text-align:center;}
-a {text-align:center; text-decoration:none; color:green;}
-li {text-align:center;}
-body {background-color:maroon;}
+
+a {text-decoration:none; color:green;}
+body {background-color:maroon; text-align:center; margin:0 auto;}

@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-  	@product = Product.new(params[:product])
+  	@product = Product.new(product_params)
 
   	if @product.save
   		redirect_to product_path(@product)
@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
   	@product = Product.find(params[:id])
 
   respond_to do |format|
-  	if @product.update_attributes(params[:product])
+  	if @product.update_attributes(product_params)
   		redirect_to product_path(@product)
   	else
   		render :edit
@@ -66,5 +66,11 @@ class ProductsController < ApplicationController
   		format.html {redirect_to products_url}
   		format.json {head :no_content}
   	end
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :description, :price_in_cents)
   end
 end

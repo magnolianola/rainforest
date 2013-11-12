@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.new(params[:user])
+  	@user = User.new(user_params)
   	if @user.save
   		redirect_to products_url, :notice => "Signed up!"
   	else
@@ -13,23 +13,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    @profile = User.find(params[:id])
-  end
-end
+    @user = User.find(params[:id])
 
-def create
-  #   @review = @product.reviews.build(params[:review])
-  #   @review.user_id = current_user.id
-  @review = Review.new(
-      :comment => params[:review][:comment],
-      :product_id => @product.id,
-      :user_id => current_user.id
-      )
-    if @review.save
-      redirect_to products_path, notice: 'Review created successfully'
-    else
-      render :action => :show
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to user_path
     end
   end
 
+  private
+ 
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :profile)
+  end
+end
 

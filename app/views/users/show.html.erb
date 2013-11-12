@@ -1,6 +1,13 @@
 <h1>Profile</h1>
 
-<p>Hello, <%= @profile.email %>!</p>
+<p>Hello, <%= @user.email %>!</p>
 
 <p>Tell us about yourself.</p>
 
+<%= @user.profile %>
+
+	<%= form_for(@user) do |f| %>
+	<%= f.text_area :profile %>
+
+	<%= f.submit %>
+<% end %>

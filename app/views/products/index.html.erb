@@ -1,5 +1,7 @@
 <h1>Products</h1>
+<% if current_user %>
 <p><%= link_to "My Profile", user_path(current_user)%> | <%= link_to "Create New Product", new_product_path(@new) %></p>
+<% end %>
 
 
 <% @products.each do |p| %>
