@@ -1,0 +1,4 @@
+<% @product.reviews.each do |review| %>
+	<%= review.body %>
+	<p><%= link_to 'Remove review', [@product, review], :confirm => "Are you sure you want to review this review?", :method => :delete %></p>
+<% end %>

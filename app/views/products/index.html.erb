@@ -8,3 +8,22 @@
 	<p><li><%= p.name %> - $<%= p.formatted_price %></li></p>
 	<p><%= link_to "See More", product_path(p) %></p>
 <% end %>
+
+</hr>
+
+<ul>
+	<%= @products.each do |product| %>
+		<%= link_to product_path(product.id) do %>
+			<h2>		
+				<%= product.formatted_price %>
+				<%= product.name %>
+			</h2>
+			<% end %>
+				<!--keeps the description to 100 characters or less -->
+				<p><%= truncate(product.description, length: 100) %></p>
+		<% end %>
+</ul>
+
+<!-- outputs several pagination links such as <<First  <Prev Next > Last>> -->
+<%= paginate @products %>
+

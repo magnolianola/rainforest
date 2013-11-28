@@ -1,13 +1,14 @@
 <%= form_for(@product) do |f| %>
 	<% if @product.errors.any? %>
 		<div id="error explanation">
-			<h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+			<%= render :partial => "/products/review_form_errors" %>
+				<h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-			<ul>
-			<% @product.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-			</ul>
+				<ul>
+					<% @product.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
 		</div>
 	<% end %>
 

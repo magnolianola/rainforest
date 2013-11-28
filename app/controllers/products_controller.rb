@@ -2,19 +2,21 @@ class ProductsController < ApplicationController
   before_filter :ensure_logged_in, :only => [:show]
 
   def index
-  	@products = Product.all
 
-  	respond_to do |format|
-  		format.html # index.html.erb
-  		format.json { render json: @product }
-  	end
+    @products = Product.order('products.created_at DESC').page(params[:page])
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def show
   	@product = Product.find(params[:id])
 
     if current_user
-      @review = @product.reviews.build
+      # @review = @product.reviews.build
+      @review = Review.new( :product_id => @product.id )
     end
 
   	respond_to do |format|
@@ -60,7 +62,7 @@ class ProductsController < ApplicationController
 
   def destroy
   	@product = Product.find(params[:id])
-  	@product.destroy
+  	@product.destroy 
   	
   	respond_to do |format|
   		format.html {redirect_to products_url}
